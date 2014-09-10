@@ -1,0 +1,7 @@
+[vagrant]
+192.168.50.50
+
+[vagrant:vars]
+sitename=snabela
+vhostTemplatePath=templates/vhost.conf
+mysqlTemplatePath=templates/mysql
