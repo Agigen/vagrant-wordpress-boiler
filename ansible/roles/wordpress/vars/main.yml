@@ -1,0 +1,4 @@
+---
+sitename: snabela
+vhostTemplatePath: vhost.conf
+mysqlTemplatePath: mysql

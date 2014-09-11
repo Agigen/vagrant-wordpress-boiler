@@ -31,13 +31,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.synced_folder "./www", "/var/www/",
+    create: true,
     mount_options: ["dmode=777,fmode=666"]
 
   config.vm.provision "ansible" do |ansible|
     ansible.verbose = "v"
-    ansible.playbook = "setup.yml"
-    ansible.inventory_path = "vagrant-inventory"
+    ansible.playbook = "ansible/main.yml"
     ansible.host_key_checking = "false"
-    ansible.limit = "all"
   end
 end
