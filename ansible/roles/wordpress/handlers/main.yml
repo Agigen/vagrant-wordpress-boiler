@@ -1,0 +1,8 @@
+---
+- name: restart apache
+  sudo: yes
+  service: name=apache2 state=restarted
+
+- name: restart mysql
+  sudo: yes
+  service: name=mysql state=restarted

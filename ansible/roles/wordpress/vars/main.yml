@@ -1,4 +1,7 @@
 ---
-sitename: snabela
-vhostTemplatePath: vhost.conf
-mysqlTemplatePath: mysql
+sitename: agigen
+db_user: agigen
+db_name: agigen
+db_password: agigen
+
+wordpress_version: 4.3.1

@@ -7,7 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
-  config.vm.network :private_network, ip: "192.168.50.50"
+  config.vm.network :private_network, ip: "192.168.50.88"
 
   config.vm.provider "virtualbox" do |v|
     host = RbConfig::CONFIG['host_os']
@@ -30,13 +30,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.customize ["modifyvm", :id, "--cpus", cpus]
   end
 
-  config.vm.synced_folder "./www", "/var/www/",
+  config.vm.synced_folder "./wp-content", "/var/agigen/wp-content",
+      create: true,
+      mount_options: ["dmode=777,fmode=666"]
+
+  config.vm.synced_folder "./.vm/mysql", "/var/lib/mysql",
     create: true,
     mount_options: ["dmode=777,fmode=666"]
 
   config.vm.provision "ansible" do |ansible|
-    ansible.verbose = "v"
     ansible.playbook = "ansible/main.yml"
     ansible.host_key_checking = "false"
   end
+
+  config.vm.provision :shell, inline: "echo '=====> All done, you can now connect to http://192.168.50.88/ on your host system. <====='"
 end
