@@ -1,0 +1,16 @@
+php_flag display_errors on
+# E_ALL & ~E_DEPRECATED & ~E_STRICT
+php_flag error_reporting 22527
+
+# E_ALL
+# php_flag error_reporting 32767
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    RewriteRule ^index\.php$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.php [L]
+</IfModule>
